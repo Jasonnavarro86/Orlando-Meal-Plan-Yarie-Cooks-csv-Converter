@@ -13,7 +13,7 @@ setTimeout(() => {
 
 const columnHeader = ['Order ID', 'Date', 'Location Name', 'Country/Region', 'State/Province', 'Town/City',  'Address', 'ZIP Code', 'Item Name','Meal Plan', 'QTY', 'Notes']
 
-const weekOf = 'Formated-Week-' + new Date().toLocaleDateString();
+const weekOf = 'Orders-Week-Of-' + new Date().toLocaleDateString();
 
 const export_csv = (arrayHeader, arrayData, delimiter, fileName) => {
             let header = arrayHeader.join(delimiter) + '\n';
