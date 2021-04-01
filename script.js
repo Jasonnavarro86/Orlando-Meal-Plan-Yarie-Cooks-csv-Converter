@@ -34,23 +34,27 @@ const export_csv = (arrayHeader, arrayData, delimiter, fileName) => {
 function readImage(input) {
  if (input.files && input.files[0]) {
  let reader = new FileReader();
+ 
         reader.readAsBinaryString(input.files[0]);
  reader.onload = function (e) {
  obj_csv.size = e.total;
  obj_csv.dataFile = e.target.result
-            parseData(obj_csv.dataFile)
-            
+            parseData(obj_csv.dataFile)       
   }
  }
 }
 
+
 function parseData(data){
+    
     let csvData = [];
-    let lbreak = data.split("\n");
+    let lbreak = data.split("\n").slice(1);
+
     lbreak.forEach(res => {
-        csvData.push(res.split(","));
+        csvData.push(res.match(/(".*?"|[^",\s]+)(?=\s*,|\s*$)/g));
     });
-    let fixedCsvColumns = csvData.slice(1).map(item => [item[0], item[1] + " " + item[2], item[11], item[13], item[14], item[15], item[16], item[17], item[25], item[26], item[28], item[31]]);
+
+    let fixedCsvColumns = csvData.map(item => [item[0], item[1], item[10], item[12], item[13], item[14], item[15], item[16], item[24], item[25], item[27], item[30]]);
     export_csv(columnHeader, fixedCsvColumns,",",weekOf);
     // console.table('columnHeader', columnHeader);
     // console.table('here', fixedCsvColumns);
