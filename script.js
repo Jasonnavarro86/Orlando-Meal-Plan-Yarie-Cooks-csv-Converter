@@ -11,7 +11,9 @@ setTimeout(() => {
     dataFile:[]
 };
 
-let columnHeader = ['Order ID', 'Date', 'Location Name', 'Country/Region', 'State/Province', 'Town/City',  'Address', 'ZIP Code', 'Item Name','Meal Plan', 'QTY', 'Notes']
+const columnHeader = ['Order ID', 'Date', 'Location Name', 'Country/Region', 'State/Province', 'Town/City',  'Address', 'ZIP Code', 'Item Name','Meal Plan', 'QTY', 'Notes']
+
+const weekOf = 'Formated-Week-' + new Date().toLocaleDateString();
 
 const export_csv = (arrayHeader, arrayData, delimiter, fileName) => {
             let header = arrayHeader.join(delimiter) + '\n';
@@ -40,19 +42,18 @@ function readImage(input) {
             console.log(obj_csv.dataFile)
             parseData(obj_csv.dataFile)
             
- }
+  }
  }
 }
 
 function parseData(data){
-  var seconds = new Date().getTime() / 1000;
     let csvData = [];
     let lbreak = data.split("\n");
     lbreak.forEach(res => {
         csvData.push(res.split(","));
     });
     let fixedCsvColumns = csvData.slice(1).map(item => [item[0], item[1] + " " + item[2], item[11], item[13], item[14], item[15], item[16], item[17], item[25], item[26], item[28], item[31]]);
-    export_csv(columnHeader, fixedCsvColumns,",",seconds)
+    export_csv(columnHeader, fixedCsvColumns,",",weekOf)
     // console.table('columnHeader', columnHeader);
     // console.table('here', fixedCsvColumns);
 }
