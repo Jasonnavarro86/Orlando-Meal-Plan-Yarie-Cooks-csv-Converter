@@ -13,17 +13,19 @@
 </head>
 
 <body>
-    <!-- Title -->
-    <h1>CSV MEAL PREP CONVERTER API - YARIE COOKS</h1>
-    <!-- Loader -->
-    <div class="loader" id="loader">
-        <img src="loader.svg" alt="Loading">
+    <div id="container">
+        <!-- Title -->
+        <h1>CSV MEAL PREP CONVERTER API - YARIE COOKS</h1>
+        <!-- Loader -->
+        <div class="loader" id="loader">
+            <img src="loader.svg" alt="Loading">
+        </div>
+        <!-- Image Container -->
+        <div class="input-container" id="input-container">
+            <input type="file" id="uploadfile" onChange="readImage(this)" accept=".csv">
+        </div>
+        <a id="yarie-cooks-link" href="www.yariecooks.com">Meal Prep Orlando</a>
     </div>
-    <!-- Image Container -->
-    <div class="image-container" id="image-container">
-        <input type="file" id="uploadfile" onChange="readImage(this)" accept=".csv">
-    </div>
-    <a id="yarie-cooks-link" href="www.yariecooks.com">Meal Prep Orlando</a>
     <!-- Script -->
     <script src="script.js" async defer></script>
 </body>
