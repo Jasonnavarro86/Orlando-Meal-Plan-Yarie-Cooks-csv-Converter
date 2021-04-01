@@ -22,9 +22,8 @@ const export_csv = (arrayHeader, arrayData, delimiter, fileName) => {
                 csv += array.join(delimiter)+"\n";
             });
  
-            let csvData = new Blob([csv.trim()], { type: 'text/csv' });  
+            let csvData = new Blob([csv], { type: 'text/csv' });  
             let csvUrl = URL.createObjectURL(csvData);
- 
             let hiddenElement = document.createElement('a');
             hiddenElement.href = csvUrl;
             hiddenElement.target = '_blank';
@@ -39,7 +38,6 @@ function readImage(input) {
  reader.onload = function (e) {
  obj_csv.size = e.total;
  obj_csv.dataFile = e.target.result
-            console.log(obj_csv.dataFile)
             parseData(obj_csv.dataFile)
             
   }
@@ -53,7 +51,7 @@ function parseData(data){
         csvData.push(res.split(","));
     });
     let fixedCsvColumns = csvData.slice(1).map(item => [item[0], item[1] + " " + item[2], item[11], item[13], item[14], item[15], item[16], item[17], item[25], item[26], item[28], item[31]]);
-    export_csv(columnHeader, fixedCsvColumns,",",weekOf)
+    export_csv(columnHeader, fixedCsvColumns,",",weekOf);
     // console.table('columnHeader', columnHeader);
     // console.table('here', fixedCsvColumns);
 }
